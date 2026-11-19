@@ -1,0 +1,38 @@
+{
+  "source": "NHANES August 2021\u2013August 2023 (DEMO_L, DIQ_L, BMX_L, PAQ_L)",
+  "eligible_population": "Adults aged 18+ with definite self-reported diabetes diagnosis response (DIQ010=1 or 2)",
+  "eligible_n": 7876,
+  "positive_n": 1073,
+  "negative_n": 6803,
+  "unweighted_analytic_sample_prevalence": 0.13623666835957338,
+  "predictors": [
+    "RIDAGEYR",
+    "RIAGENDR",
+    "RIDRETH3",
+    "DMDEDUC2",
+    "INDFMPIR",
+    "BMXBMI",
+    "PAD680"
+  ],
+  "target": "Self-reported clinician diagnosis of diabetes (DIQ010); 1=yes, 0=no",
+  "split": "Stratified 60% train / 20% validation / 20% held-out test; random states 42 and 43",
+  "model_selection": "Highest validation ROC-AUC; threshold selected on validation set by maximum F1; one final test evaluation",
+  "selected_model": "Logistic Regression",
+  "selected_threshold": 0.6400000000000001,
+  "xgboost_scale_pos_weight": 6.336956521739131,
+  "excluded": [
+    "DIQ010 target",
+    "LBXGH HbA1c due to diagnostic leakage concern",
+    "SEQN respondent identifier",
+    "survey weights/design variables from predictive features"
+  ],
+  "limitations": [
+    "Exploratory and unweighted classifier; not a national NHANES prevalence estimate",
+    "NHANES complex survey design not incorporated into model fitting/metrics",
+    "Single 2021\u20132023 cycle and no external validation",
+    "Self-reported diagnosed diabetes omits undiagnosed cases",
+    "Child participants excluded from classifier; model applies to adults only",
+    "Association/importance does not imply causation",
+    "Threshold optimized for F1 on validation data; different clinical costs imply a different threshold"
+  ]
+}
